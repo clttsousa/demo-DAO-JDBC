@@ -91,7 +91,8 @@ public class Seller implements Serializable {
 
     @Override
     public String toString() {
-        return  "ID: " + id +
+        return  "----------------------------------" +
+                "\nID: " + id +
                 "\nName: " + name +
                 "\nEmail: " + email  +
                 "\nBirth Date: " + birthDate +
