@@ -5,11 +5,12 @@ import model.dao.SellerDAO;
 import model.entities.Department;
 import model.entities.Seller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Program {
     public static void main(String[] args) {
+        Locale.setDefault(Locale.US);
+        Scanner sc = new Scanner(System.in);
         SellerDAO sellerDao = DaoFactory.createSellerDao();
 
         System.out.println(" =========================================================");
@@ -32,5 +33,27 @@ public class Program {
         for (Seller obj : list){
             System.out.println(obj);
         }
+
+        System.out.println(" ===========================================================================");
+        System.out.println("| ---- TESTE 4: INSERCAO DE VENDEDORES (insert) ---- |");
+        Seller newSeller = new Seller(null, "Greg", "greg@gmail.com", new Date(), 4000.0, department);
+        sellerDao.insert(newSeller);
+        System.out.println("Inserido, novo ID: " + newSeller.getId());
+
+        System.out.println(" ===========================================================================");
+        System.out.println("| ---- TESTE 5: ATUALIZAR INFORMACOES DOS VENDEDORES (update) ---- |");
+        seller = sellerDao.findById(1);
+        seller.setName("Martha Wayne");
+        sellerDao.update(seller);
+        System.out.println("Update completo");
+
+        System.out.println(" ===========================================================================");
+        System.out.println("| ---- TESTE 6: DELETAR VENDEDORES DO BANCO (delete) ---- |");
+        System.out.print("Entre com o id do vendedor a ser deletado: ");
+        int idSeller = sc.nextInt();
+        sellerDao.deleteById(idSeller);
+        System.out.println("Delete completo");
+
+        sc.close();
     }
 }
