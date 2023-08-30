@@ -97,7 +97,11 @@ public class SellerDaoJDBC implements SellerDAO {
             );
             st.setInt(1, id);
 
-            st.executeUpdate();
+            int rows = st.executeUpdate();
+
+            if (rows == 0){
+                throw new DbException("ID não existente!!");
+            }
 
         } catch (SQLException e){
             throw new DbException(e.getMessage());
